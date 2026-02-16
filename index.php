@@ -2,6 +2,7 @@
 
 require 'functions.php';
 require 'database.php';
+require 'router.php';
 
 $id = $_GET['id'];
 
