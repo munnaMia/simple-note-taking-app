@@ -12,16 +12,11 @@ $note = $db->query(
     [
         'id' => $_GET['id']
     ]
-)->fetch();
+)->findOrAbort();
 
-
-if (!$note) {
-    abort();
-}
 
 $currentuser = 3;
 
-if ($note['user_id'] != $currentuser) {
-    abort(Response::FORBIDDEN); // meam forbidden error
-}
+authorize($note['user_id'] === $currentuser);
+
 require 'views/note.view.php';
