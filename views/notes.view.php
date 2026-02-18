@@ -11,7 +11,7 @@
             <?php foreach ($notes as $note): ?>
                 <li>
                     <a href="/note?id=<?= $note['id'] ?>" class="text-2xl text-blue-500 hover:underline">
-                        <?= $note['body'] ?>
+                        <?= htmlspecialchars($note['body']) ?>
                     </a>
                 </li>
 

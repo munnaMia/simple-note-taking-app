@@ -7,3 +7,4 @@
     - index.php is similler to main.go file...
     - $_POST give use the info about our post req.
     - html name is equal db col name
+    - htmlspecialchars() help to prevent user untruste action like putting js on db
