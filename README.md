@@ -15,3 +15,4 @@
     - trim() -> remove empty spaces
     - INF - infinite type
     - static method can be called without create the instance of an class like const we did before make pure funcs only static method thoese that does depend uppon any 
+    - __DIR__ .'/../partials/header.php' here dir cut prefix and extract the partial path
