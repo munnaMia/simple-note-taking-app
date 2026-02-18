@@ -1,5 +1,6 @@
 
 <?php
 
-$headline = "Home Page";
-require 'views/index.view.php';
+view('index.view.php',[
+    'headline' => 'Home'
+]);

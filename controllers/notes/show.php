@@ -1,11 +1,8 @@
 <?php
 
 
-$config = require('config.php');
+$config = require base_path('config.php');
 $db = new Database($config, 'munna', '3m@MJ#Sha4787mu');
-
-$headline = 'Your Note';
-
 
 $note = $db->query(
     'SELECT * FROM notes WHERE id = :id',
@@ -14,9 +11,11 @@ $note = $db->query(
     ]
 )->findOrAbort();
 
-
-$currentuser = 3;
+$currentuser = 3; // temp cur user
 
 authorize($note['user_id'] === $currentuser);
 
-require 'views/notes/show.view.php';
+view('notes/show.view.php', [
+    'headline' => 'Your Note',
+    'note' => $note,
+]);
