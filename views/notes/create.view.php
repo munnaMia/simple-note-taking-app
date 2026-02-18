@@ -1,8 +1,8 @@
-<?php require(__DIR__ . '/../partials/header.php'); ?>
+<?php require('views/partials/header.php'); ?>
 
-<?php require(__DIR__ . '/../partials/nav.php') ?>
+<?php require('views/partials/nav.php') ?>
 
-<?php require(__DIR__ . '/../partials/banner.php'); ?>
+<?php require('views/partials/banner.php'); ?>
 
 
 <main>
@@ -41,4 +41,4 @@
     </div>
 </main>
 
-<?php require(__DIR__ . '/../partials/footer.php'); ?>
+<?php require('views/partials/footer.php'); ?>
