@@ -1,6 +1,8 @@
 <?php
 
-$config = require('config.php');
+require 'Validator.php';
+
+$config = require 'config.php';
 $db = new Database($config, 'munna', '3m@MJ#Sha4787mu');
 
 
@@ -9,13 +11,13 @@ $headline = 'Create a new note';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = [];
 
-    if (strlen($_POST['body']) == 0) {
-        $errors['body'] = 'A body is required';
+    $validatator = new Validator();
+
+    if (!$validatator->string($_POST['body'], 1, 1000)) {
+        $errors['body'] = 'A body is required under 1000 chars';
     }
 
-    if (strlen($_POST['body']) > 1000) {
-        $errors['body'] = 'a body can\' be more than 1,000 chars'; // to save db storage.
-    }
+    
 
     if (empty($errors)) {
         $db->query('INSERT INTO notes(body, user_id) VALUES(:body , :user_id);', [
