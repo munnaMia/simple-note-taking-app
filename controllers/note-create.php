@@ -11,13 +11,12 @@ $headline = 'Create a new note';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = [];
 
-    $validatator = new Validator();
 
-    if (!$validatator->string($_POST['body'], 1, 1000)) {
+    if (! Validator::string($_POST['body'], 1, 1000)) {
         $errors['body'] = 'A body is required under 1000 chars';
     }
 
-    
+
 
     if (empty($errors)) {
         $db->query('INSERT INTO notes(body, user_id) VALUES(:body , :user_id);', [
