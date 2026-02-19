@@ -13,6 +13,12 @@
             <?= htmlspecialchars($note['body']) ?>
         </p>
 
+        <form class="mt-6" method="POST">
+            <!-- hiddle note id send to front end  -->
+            <input type="hidden" name="id" value="<?= $note['id'] ?>">
+            <button type="submit" class = "text-sm text-red-500">DELETE</button>
+        </form>
+
     </div>
 </main>
 
