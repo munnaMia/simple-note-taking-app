@@ -24,6 +24,52 @@
     - **php -h** - php help
     - **php -t** -> to specify doc root (becase currecntly we can access routes.php file from browser which is a security risk) use this we can specify our public folder and what public can access. like **php -S localhost:8080 -t public**
     - **extract(assos_array)** - php provide this funciton whice extract a assos in a file as key of the assos as var and value of the key is data of the array
+## **namespace Name** -> In PHP, a namespace is used to organize code and avoid name conflicts. It helps you group related classes, functions, and constants under a unique name.
+```php
+class User {
+    public function getName() {
+        return "User A";
+    }
+}
+
+class User {
+    public function getName() {
+        return "User B";
+    }
+}
+# ❌ This will cause a fatal error:
+
+#Cannot declare class User, because the name is already in use.
+```
+```php
+namespace App\Models;
+
+class User {
+    public function getName() {
+        return "App User";
+    }
+}
+
+// can be use like
+$user = new App\Models\User();
+
+```
+```php
+namespace Admin\Models;
+
+class User {
+    public function getName() {
+        return "Admin User";
+    }
+}
+
+// can be use like 
+use App\Models\User;
+
+$user = new User();
+
+```
+
 
 ## **spl_autoload_register**
 ```php
@@ -38,3 +84,5 @@ spl_autoload_register(function ($class) {
 // How It Works
 // Think of it as a "safety net." When you write $user = new User(); and PHP realizes it doesn't know what a User class is, it doesn't crash immediately. Instead, it looks at the functions you've registered via spl_autoload_register() and asks them, "Hey, can you find this class for me?"
 ```
+
+   

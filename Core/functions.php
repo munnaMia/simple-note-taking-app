@@ -1,5 +1,7 @@
 <?php
 
+use Core\Response;
+
 function dumpAndDie($value)
 {
     echo "<pre>";
