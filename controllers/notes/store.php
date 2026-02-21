@@ -1,12 +1,11 @@
 <?php
 
-use Core\Database;
+use Core\App;
 use Core\Validator;
 
 require base_path('Core/Validator.php');
 
-$config = require base_path('config.php');
-$db = new Database($config, 'munna', '3m@MJ#Sha4787mu');
+$db = App::getContainer()->resolve(\Core\Database::class);
 
 
 $errors = [];

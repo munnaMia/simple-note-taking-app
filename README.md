@@ -86,3 +86,12 @@ spl_autoload_register(function ($class) {
 ```
 
    
+## for the service container i can do all of this
+```php
+$db = App::getContainer()->resolve('Core\Database'); 
+//or
+use Database;
+$db = App::getContainer()->resolve(Database::class); 
+// or
+$db = App::getContainer()->resolve(\Core\Database::class); 
+```

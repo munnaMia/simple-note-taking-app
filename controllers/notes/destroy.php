@@ -1,12 +1,10 @@
 <?php
 
-use Core\Database;
+use Core\App;
 
 $currentuser = 3; // temp cur user
 
-$config = require base_path('config.php');
-$db = new Database($config, 'munna', '3m@MJ#Sha4787mu');
-
+$db = App::getContainer()->resolve('Core\Database');
 
 // basic auth
 $note = $db->query(

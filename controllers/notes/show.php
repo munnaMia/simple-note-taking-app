@@ -1,11 +1,11 @@
 <?php
 
+use Core\App;
 use Core\Database;
 
 $currentuser = 3; // temp cur user
 
-$config = require base_path('config.php');
-$db = new Database($config, 'munna', '3m@MJ#Sha4787mu');
+$db = App::getContainer()->resolve(Database::class);
 
 $note = $db->query(
     'SELECT * FROM notes WHERE id = :id',

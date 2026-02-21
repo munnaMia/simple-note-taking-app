@@ -11,6 +11,8 @@ spl_autoload_register(function ($class) { // ref to readme
     require base_path("{$result}.php");
 });
 
+require base_path('bootstrap.php');
+
 $router = new Core\Router();
 
 $routes = require base_path('routes.php');
