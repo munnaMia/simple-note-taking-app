@@ -11,4 +11,12 @@ spl_autoload_register(function ($class) { // ref to readme
     require base_path("{$result}.php");
 });
 
-require base_path('Core/router.php');
+$router = new Core\Router();
+
+$routes = require base_path('routes.php');
+$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+
+//if user send method using hidden html input
+$method = isset($_POST['_method']) ? $_POST['_method'] : $_SERVER['REQUEST_METHOD'];
+
+$router->route($uri, $method);
