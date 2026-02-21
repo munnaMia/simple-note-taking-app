@@ -1,12 +1,12 @@
 <?php
 
+
 use Core\App;
 use Core\Database;
 
+$db = App::resolve(Database::class);
+
 $currentuser = 3; // temp cur user
-
-$db = App::getContainer()->resolve(Database::class);
-
 $note = $db->query(
     'SELECT * FROM notes WHERE id = :id',
     [

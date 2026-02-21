@@ -1,11 +1,11 @@
 <?php
 
 use Core\App;
+use Core\Database;
+
+$db = App::resolve(Database::class);
 
 $currentuser = 3; // temp cur user
-
-$db = App::getContainer()->resolve('Core\Database');
-
 // basic auth
 $note = $db->query(
     'SELECT * FROM notes WHERE id = :id',

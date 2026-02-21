@@ -1,12 +1,12 @@
 <?php
 
 use Core\App;
+use Core\Database;
 use Core\Validator;
 
+$db = App::resolve(Database::class);
+
 require base_path('Core/Validator.php');
-
-$db = App::getContainer()->resolve(\Core\Database::class);
-
 
 $errors = [];
 
