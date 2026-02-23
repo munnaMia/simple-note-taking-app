@@ -15,7 +15,8 @@ $note = $db->query(
 
 authorize($note['user_id'] === $currentuser);
 
-view('notes/show.view.php', [
-    'headline' => 'Your Note',
-    'note' => $note,
+view('notes/edit.view.php', [
+    'headline' => 'Edit Note',
+    'errors' => [],
+    'note' => $note
 ]);

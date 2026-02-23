@@ -95,3 +95,12 @@ $db = App::getContainer()->resolve(Database::class);
 // or
 $db = App::getContainer()->resolve(\Core\Database::class); 
 ```
+
+## Some php controller conventions
+- Create -> show form to create resource
+- Index -> show all the resources
+- Destroy -> delete a resource
+- Edit -> show form to edit 
+- Update -> update in db
+- Store -> store a resources into db
+- Show -> show a single resource
