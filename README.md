@@ -1,6 +1,7 @@
 # simple-note-taking-app
 
 1. Consept that i have learn
+    - after redirect always kill the script... **header('location: /)**
     - set email a index to be uniqued for each user
     - set foren_key on notes to track user
     - the controllers are the things that process a req and fetch data from the db.
@@ -20,7 +21,8 @@
         - This is a magic constant that always points to the directory where the current file (index.php) lives. In your case, that is /home/munna/.../public/.
         - ..: This tells the operating system to "go up one level."
         - Result: Even though the web server is serving from the public folder, the PHP script has full permission to reach "up and out" to the parent directory to find Database.php
-
+        
+    - **php -info** -> gives information about php
     - **php -h** - php help
     - **php -t** -> to specify doc root (becase currecntly we can access routes.php file from browser which is a security risk) use this we can specify our public folder and what public can access. like **php -S localhost:8080 -t public**
     - **extract(assos_array)** - php provide this funciton whice extract a assos in a file as key of the assos as var and value of the key is data of the array
@@ -104,3 +106,16 @@ $db = App::getContainer()->resolve(\Core\Database::class);
 - Update -> update in db
 - Store -> store a resources into db
 - Show -> show a single resource
+
+## Session
+- start the session first at the very beg.
+    - session_start();
+- now fetch or add into session
+    - $_SESSION('name') = 'munna';
+    or 
+    - $name = $_SESSION('name');
+- session data is temporary
+- so we will have a file on server and cookie on browser to store the session data
+- browser cookie store with php session id like **PHPSESSID** with this and server contain the session file
+- using **php -info** and search **session.save_path** we can see the php session file path on server
+
