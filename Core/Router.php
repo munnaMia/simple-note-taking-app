@@ -2,7 +2,7 @@
 
 namespace Core;
 
-use Middleware;
+use Core\Middleware\Middleware as CoreMiddleware;
 
 class Router
 {
@@ -58,9 +58,7 @@ class Router
     {
         foreach ($this->routes as $route) {
             if ($route['uri'] == $uri && $route['method'] == strtoupper($method)) {
-                $middleware =  Middleware::Map[$route['middleware']];
-
-                (new $middleware)->handle();
+                CoreMiddleware::resolve($route['middleware']);
 
                 require base_path($route['controller']);
                 exit();
