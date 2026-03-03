@@ -10,7 +10,9 @@
                         <!-- Current: "bg-gray-950/50 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
                         <a href="/" aria-current="page" class=" <?php echo urlIs('/') ? "bg-gray-950/50 text-white" : "text-gray-300"; ?>      rounded-md px-3 py-2 text-sm font-medium hover:bg-white/5 hover:text-white">Dashboard</a>
                         <a href="/about" class="            <?php echo urlIs('/about') ? "bg-gray-950/50 text-white" : "text-gray-300"; ?>     rounded-md px-3 py-2 text-sm font-medium hover:bg-white/5 hover:text-white">About</a>
-                        <a href="/notes" class="          <?php echo urlIs('/notes') ? "bg-gray-950/50 text-white" : "text-gray-300"; ?>   rounded-md px-3 py-2 text-sm font-medium hover:bg-white/5 hover:text-white">Notes</a>
+                        <?php if ($_SESSION['user'] ?? false): ?>
+                            <a href="/notes" class="          <?php echo urlIs('/notes') ? "bg-gray-950/50 text-white" : "text-gray-300"; ?>   rounded-md px-3 py-2 text-sm font-medium hover:bg-white/5 hover:text-white">Notes</a>
+                        <?php endif ?>
                         <a href="/contact" class="          <?php echo urlIs('/contact') ? "bg-gray-950/50 text-white" : "text-gray-300"; ?>   rounded-md px-3 py-2 text-sm font-medium hover:bg-white/5 hover:text-white">Contact</a>
                     </div>
                 </div>
@@ -31,6 +33,12 @@
 
                             <?php if ($_SESSION['user'] ?? false): ?>
                                 <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" class="size-8 rounded-full outline -outline-offset-1 outline-white/10" />
+
+                                <!-- log out user  -->
+                                <form action="/session" method="POST">
+                                    <input type="hidden" name="_method" value="DELETE" />
+                                    <button class="<?php echo urlIs('/logout') ? "bg-gray-950/50 text-white" : "text-gray-300"; ?>     rounded-md ml-3 px-3 py-2 text-sm font-medium hover:bg-white/5 hover:text-white">Log out</button>
+                                </form>
                             <?php else: ?>
                                 <a href="/register" class="<?php echo urlIs('/register') ? "bg-gray-950/50 text-white" : "text-gray-300"; ?>     rounded-md px-3 py-2 text-sm font-medium hover:bg-white/5 hover:text-white">Register</a>
                                 <a href="/login" class="<?php echo urlIs('/login') ? "bg-gray-950/50 text-white" : "text-gray-300"; ?>     rounded-md px-3 py-2 text-sm font-medium hover:bg-white/5 hover:text-white">Log in</a>

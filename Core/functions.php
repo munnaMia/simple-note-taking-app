@@ -48,4 +48,19 @@ function login($user)
     $_SESSION['user'] = [
         'email' => $user['email'],
     ]; // user array
+
+    session_regenerate_id(true); // regenarete an unique id for each login
+}
+
+function logout()
+{
+    //clear out session as user log out
+
+    $_SESSION = []; // clear out super global
+    session_destroy(); //destory session file
+
+    // delete the cookie 
+    $params = session_get_cookie_params();
+
+    setcookie('PHPSESSID', '', time() - 3600, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
 }

@@ -31,26 +31,20 @@ $user = $db->query('SELECT * FROM users WHERE email = :email', [
     'email' => $email
 ])->find();
 
-if (!$user) {
-    return view('session/create.view.php', [
-        'errors' => [
-            'email' => 'no matching account found for this email'
-        ],
-    ]);
+if ($user) {
+    // if password match varify user so log in and store hash 
+    if (password_verify($password, $user['password'])) {
+        login([
+            'email' => $email
+        ]);
+
+        header('location: /');
+        exit;
+    }
 }
 
-// if password match varify user so log in and store hash 
-if (password_verify($password, $user['password'])) {
-    login([
-        'email' => $email
-    ]);
-
-    header('location: /');
-    exit;
-}
-
- return view('session/create.view.php', [
-        'errors' => [
-            'email' => 'wrong password!'
-        ],
-    ]);
+return view('session/create.view.php', [
+    'errors' => [
+        'email' => 'wrong password!'
+    ],
+]);
