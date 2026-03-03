@@ -42,7 +42,7 @@ if ($user) {
     // If not , create one and log user in and redirect
     $db->query('INSERT INTO users(email, password) VALUES(:email, :password);', [
         'email' => $email,
-        'password' => $password,
+        'password' => password_hash($password, PASSWORD_BCRYPT),
     ]);
 
     // now as the user log in i have to mark that by using session
