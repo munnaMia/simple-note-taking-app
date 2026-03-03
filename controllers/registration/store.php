@@ -45,10 +45,7 @@ if ($user) {
         'password' => password_hash($password, PASSWORD_BCRYPT),
     ]);
 
-    // now as the user log in i have to mark that by using session
-    $_SESSION['user'] = [
-        'email' => $email
-    ];
+    login($user);
 
     header('location: /');
     exit();

@@ -41,3 +41,11 @@ function view($path, $attributes = [])
 
     require base_path('views/' . $path);
 }
+
+function login($user)
+{
+    // now as the user log in i have to mark that by using session
+    $_SESSION['user'] = [
+        'email' => $user['email'],
+    ]; // user array
+}
