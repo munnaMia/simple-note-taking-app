@@ -60,7 +60,7 @@ class Router
             if ($route['uri'] == $uri && $route['method'] == strtoupper($method)) {
                 CoreMiddleware::resolve($route['middleware']);
 
-                require base_path($route['controller']);
+                require base_path('http/controllers/' . $route['controller']);
                 exit();
             }
         }
