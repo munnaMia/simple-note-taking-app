@@ -24,4 +24,8 @@ class LoginForm
     public function errors(){
         return $this->errors;
     }
+
+    public function error($field, $massage){
+        $this->errors[$field] = $massage;
+    }
 }
