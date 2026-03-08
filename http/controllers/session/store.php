@@ -1,4 +1,5 @@
 <?php
+
 use Core\Session;
 use Core\Authenticator;
 use Http\Forms\LoginForm;
@@ -22,6 +23,10 @@ if ($form->validate($email, $password)) {
 // $_SESSION['_flash']['errors'] = $form->errors();
 
 Session::flash('errors', $form->errors());
+Session::flash('old', [
+    'email' => $email,
+]);
+
 
 return redirect('/login');
 
