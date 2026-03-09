@@ -3,18 +3,20 @@
 use Core\Session;
 use Core\ValidationException;
 
-session_start(); // starting the session 
-
 const BASE_PATH = __DIR__ . '/../';
 
+require BASE_PATH . '/vendor/autoload.php';
+
+session_start(); // starting the session 
 
 require BASE_PATH . 'Core/functions.php';
 
-spl_autoload_register(function ($class) { // ref to readme
-    // now we get $class - CORE\DATABASE so we have to make the forward \ to backward
-    $result = str_replace('\\', '/', $class);
-    require base_path("{$result}.php");
-});
+// spl_autoload_register(function ($class) { // ref to readme
+//     // now we get $class - CORE\DATABASE so we have to make the forward \ to backward
+//     $result = str_replace('\\', '/', $class);
+//     require base_path("{$result}.php");
+// });
+
 
 require base_path('bootstrap.php'); // calling bootstrap file here to use APP class
 

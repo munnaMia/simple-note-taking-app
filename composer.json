@@ -1,0 +1,16 @@
+{
+    "name": "munna/simple-note-taking-app",
+    "authors": [
+        {
+            "name": "munnaMia",
+            "email": "mdmunnamia987@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Core\\": "Core/",
+            "Http\\": "Http/"
+        }
+    }
+}

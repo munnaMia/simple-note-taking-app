@@ -1,7 +1,6 @@
 # simple-note-taking-app
 
 1. Consept that i have learn
-
     - after redirect always kill the script... **header('location: /)**
     - `password_hash($password, PASSWORD_BCRYPT)` use to hash password
     - `password_verify($password, $user['password'])` varify password
@@ -27,13 +26,13 @@
         - This is a magic constant that always points to the directory where the current file (index.php) lives. In your case, that is /home/munna/.../public/.
         - `/ ../` This tells the operating system to "go up one level."
         - Result: Even though the web server is serving from the public folder, the PHP script has full permission to reach "up and out" to the parent directory to find Database.php
-        
     - **php -info** -> gives information about php
     - **php -h** - php help
     - **php -t** -> to specify doc root (becase currecntly we can access routes.php file from browser which is a security risk) use this we can specify our public folder and what public can access. like **php -S localhost:8080 -t public**
     - **extract(assos_array)** - php provide this funciton whice extract a assos in a file as key of the assos as var and value of the key is data of the array
 
 ## **namespace Name** -> In PHP, a namespace is used to organize code and avoid name conflicts. It helps you group related classes, functions, and constants under a unique name.
+
 ```php
 class User {
     public function getName() {
@@ -50,6 +49,7 @@ class User {
 
 #Cannot declare class User, because the name is already in use.
 ```
+
 ```php
 namespace App\Models;
 
@@ -63,6 +63,7 @@ class User {
 $user = new App\Models\User();
 
 ```
+
 ```php
 namespace Admin\Models;
 
@@ -72,15 +73,15 @@ class User {
     }
 }
 
-// can be use like 
+// can be use like
 use App\Models\User;
 
 $user = new User();
 
 ```
 
-
 ## **spl_autoload_register**
+
 ```php
 spl_autoload_register(function ($class) {
     require   base_path($class . '.php');
@@ -94,35 +95,54 @@ spl_autoload_register(function ($class) {
 // Think of it as a "safety net." When you write $user = new User(); and PHP realizes it doesn't know what a User class is, it doesn't crash immediately. Instead, it looks at the functions you've registered via spl_autoload_register() and asks them, "Hey, can you find this class for me?"
 ```
 
-   
 ## for the service container i can do all of this
+
 ```php
-$db = App::getContainer()->resolve('Core\Database'); 
+$db = App::getContainer()->resolve('Core\Database');
 //or
 use Database;
-$db = App::getContainer()->resolve(Database::class); 
+$db = App::getContainer()->resolve(Database::class);
 // or
-$db = App::getContainer()->resolve(\Core\Database::class); 
+$db = App::getContainer()->resolve(\Core\Database::class);
 ```
 
 ## Some php controller conventions
+
 - Create -> show form to create resource
 - Index -> show all the resources
 - Destroy -> delete a resource
-- Edit -> show form to edit 
+- Edit -> show form to edit
 - Update -> update in db
 - Store -> store a resources into db
 - Show -> show a single resource
 
 ## Session
+
 - start the session first at the very beg.
     - session_start();
 - now fetch or add into session
-    - $_SESSION('name') = 'munna';
-    or 
-    - $name = $_SESSION('name');
+    - $\_SESSION('name') = 'munna';
+      or
+    - $name = $\_SESSION('name');
 - session data is temporary
 - so we will have a file on server and cookie on browser to store the session data
 - browser cookie store with php session id like **PHPSESSID** with this and server contain the session file
 - using **php -info** and search **session.save_path** we can see the php session file path on server
 
+## Composer
+
+**Dependency manageer for php**
+
+- `composer init` use to init a composer
+- `composer install` install dependency
+
+- autoload config
+
+```json
+"autoload": {
+        "psr-4": {
+            "Core\\" : "Core/"
+        }
+    }
+```
+- `composer dump-autoload` repopulate my autoload
