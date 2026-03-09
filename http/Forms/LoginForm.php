@@ -2,10 +2,8 @@
 
 namespace Http\Forms;
 
-use Attribute;
+use Core\ValidationException as CoreValidationException;
 use Core\Validator;
-use Exception;
-use ValidationException;
 
 class LoginForm
 {
@@ -13,7 +11,6 @@ class LoginForm
 
     public function __construct(public array $attributes)
     {
-        
         if (! Validator::email($attributes['email'])) {
             $this->errors['email'] = 'Please provide an valid email address';
         }
@@ -23,17 +20,24 @@ class LoginForm
         }
     }
 
-
     public static function  validate($attributes)
     {
         $instance = new static($attributes);
 
-        if ($instance->failed()) {
-            // throw new ValidationException(); both impl are same.
-            ValidationException::throw($instance->errors(), $instance->attributes);
-        }
+        return $instance->failed() ? $instance->throw() : $instance;
 
-        return $instance;
+        // if ($instance->failed()) {
+        //     // throw new ValidationException(); both impl are same.
+        //     // CoreValidationException::throw($instance->errors(), $instance->attributes);
+        //     $instance->throw();
+        // }
+
+        // return $instance;
+    }
+
+    public function throw()
+    {
+        CoreValidationException::throw($this->errors(), $this->attributes);
     }
 
     public function failed()
@@ -49,5 +53,7 @@ class LoginForm
     public function error($field, $massage)
     {
         $this->errors[$field] = $massage;
+
+        return $this;
     }
 }

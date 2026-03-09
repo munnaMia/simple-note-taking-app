@@ -68,6 +68,9 @@ class Router
         $this->abort();
     }
 
+    public function priviousUrl(){
+        return $_SERVER['HTTP_REFERER'];
+    }
 
     protected function abort($code = 404)
     {

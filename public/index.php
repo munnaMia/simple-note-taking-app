@@ -1,6 +1,7 @@
 <?php
 
 use Core\Session;
+use Core\ValidationException;
 
 session_start(); // starting the session 
 
@@ -25,7 +26,17 @@ $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 //if user send method using hidden html input
 $method = isset($_POST['_method']) ? $_POST['_method'] : $_SERVER['REQUEST_METHOD'];
 
-$router->route($uri, $method);
+try {
+    $router->route($uri, $method); // routing
+} catch (ValidationException $exceptation) {
+
+    Session::flash('errors', $exceptation->errors);
+    Session::flash('old', [
+        'email' => $exceptation->old
+    ]);
+
+    return redirect($router->priviousUrl());
+}
 
 // unset($_SESSION['_flash']); // clear session
 Session::unflash();
