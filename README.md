@@ -146,3 +146,4 @@ $db = App::getContainer()->resolve(\Core\Database::class);
     }
 ```
 - `composer dump-autoload` repopulate my autoload
+- `composer require illuminate/collections` this package is like array on stariod
